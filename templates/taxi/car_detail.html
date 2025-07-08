@@ -11,9 +11,9 @@
       Update
     </a>
     {% if is_assign %}
-      <a class="btn btn-success link-to-page" href="{% url 'taxi:car-assign' pk=car.id %}">Assign me to this car</a>
-    {% else %}
       <a class="btn btn-danger link-to-page" href="{% url 'taxi:car-assign' pk=car.id %}">Delete me from this car</a>
+    {% else %}
+      <a class="btn btn-success link-to-page" href="{% url 'taxi:car-assign' pk=car.id %}">Assign me to this car</a>
     {% endif %}
 
 

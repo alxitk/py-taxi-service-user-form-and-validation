@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
@@ -79,6 +80,10 @@ def assign_to_car(request, pk):
     user = request.user
     car = Car.objects.get(id=pk)
     drivers = car.drivers.all()
+
+    if not isinstance(user, Driver):
+        raise PermissionDenied
+
     if user not in drivers:
         car.drivers.add(user)
         is_assign = False
